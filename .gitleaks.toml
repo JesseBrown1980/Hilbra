@@ -1,0 +1,26 @@
+title = "Hilbra secret-scan config — keys NEVER enter this repo (LAW Article 4)"
+
+# Build on gitleaks' default ruleset (catches AWS/GCP/GitHub tokens, private keys, etc.)
+[extend]
+useDefault = true
+
+# Block key-bearing FILES from ever being committed.
+[[rules]]
+id = "hilbra-keyfile-by-name"
+description = "Files that hold secret key material must never be committed"
+path = '''(?i)(recall\.key|\.pem|\.pk8|\.kdbx|\.keystore|\.jks|id_rsa|id_ed25519|wallet\.dat)$'''
+regex = '''.'''
+
+# Flag a bare 64-hex secret ONLY when it sits next to a key-ish keyword (avoids flagging the
+# many legitimate sha256 proof-hashes that appear in docs/specs).
+[[rules]]
+id = "hilbra-hmac-key-near-keyword"
+description = "64-char hex value adjacent to a key/secret keyword (Asolaria HMAC/recall key shape)"
+regex = '''(?i)(key|secret|hmac|token|recall)[^\n]{0,40}\b[0-9a-f]{64}\b'''
+
+# Allow documented sha256 example hashes that are explicitly labelled as proofs/checksums.
+[allowlist]
+description = "legitimate proof/checksum hashes in docs"
+regexes = [
+  '''(?i)(sha256|body_sha16|row_sha16|proof_sha16|checksum|digest)\s*[:=]''',
+]

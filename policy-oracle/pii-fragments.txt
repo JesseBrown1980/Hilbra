@@ -1,0 +1,59 @@
+# Hilbra public-tier PII deny-list — the 45-fragment policy oracle.
+#
+# These are DETECTION PATTERNS, not data. A path or row whose (lowercased) path or content
+# contains any of these substrings classifies as OWNER-PRIVATE and is NEVER served on the
+# public tier (level 0). This file is the conformance contract: every Hilbra node MUST run a
+# byte-identical copy, and the public tier is provably PII-free ONLY if it does.
+#
+# Rules: PII match wins before any public-canon allow. Conservative by design — a false positive
+# only over-privatizes a row (safe); a false negative would leak. Lines starting with # are comments.
+# The conformance harness pins this file's sha256; CI guards against accidental gutting (>=40 lines).
+#
+# --- legal / financial / customer / personal documents ---
+legal
+evidence-package
+evidence
+google-support-refund
+support-refund-complaints
+refund-complaint
+refund
+bank
+invoice
+financial
+paypal
+zelle
+passport
+cnpj
+cpf
+whatsapp-rayssa
+# --- secrets / keys / vault / credentials ---
+beast-keys
+backup-keys
+decrypted-vault
+vault
+charm_
+private-key
+privatekey
+recall.key
+.pem
+.key
+.pk8
+.kdbx
+.keystore
+.jks
+id_rsa
+id_ed25519
+wallet.dat
+seed-phrase
+seed_phrase
+mnemonic
+credential
+secret
+password
+passwd
+.asolaria
+# --- personal-device dumps (phone DCIM / sdcard / downloads) ---
+dcim
+sdcard
+falcon-dump
+phone-dump
