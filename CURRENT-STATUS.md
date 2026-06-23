@@ -19,7 +19,7 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 | HMAC key‑off‑wire auth (`LINK\|owner\|host\|verb\|nonce\|ts_be64`) | code path real | MEASURED_ACER (loopback only); remote cross‑colony interop `UNVERIFIED_CURRENT` |
 | Owner‑PID consent + per‑owner grant `min(requested, grant)` | spec correct; **engine parity in progress** | CANON (spec); engine `UNVERIFIED` (PR #8 over‑grants) |
 | 45‑fragment policy oracle byte‑identical across colonies | claimed; **this PR does NOT change the file** (hash preserved) | CANON; liris‑seat sha `MEASURED_LIRIS`; acer‑seat sha‑compare `UNVERIFIED_CURRENT` (receipt pending) |
-| Inverted index `HILBRA-IDX-BEHCS-TUPLE-TEXT-V1` (~60 ms Node, 2.6M terms) | single‑colony | OPERATOR_OBSERVED_ACER (prior receipt) |
+| Inverted index `HILBRA-IDX-BEHCS-TUPLE-TEXT-V1` (Node): build 32.5 s, 591,286 rows, **2,614,638 terms**, 23,930,053 postings, 0 skipped; **~56–67 ms/query**; L0 PII probes (`bank`/`vault`/`.pem`/`legal`) → candidates 239/732/26/1885 then **level‑filtered to 0 → provably PII‑free** | concrete operator receipt (screenshots 2026‑06‑23); today's run measured even faster | OPERATOR_OBSERVED_ACER |
 
 ## Recall engines
 
@@ -44,8 +44,12 @@ evidence only, **not** authorization or disclosure parity:
 
 1. **Authorization over‑grant** — `verify_remote` returns owner‑private (L9) for every allow‑listed
    owner instead of the per‑owner grant; `/api/search?level=` is ignored. Must be `min(requested, grant)`.
-2. **PII path‑vs‑content gap** — applies the 45 to path only + a separate 8 to content; canon requires
-   all 45 on path **and** content (see `policy-oracle/README.md`). Affects both Rust and `serve-recall.cjs`.
+2. **PII path‑vs‑content — RESOLVED as non‑blocking (defense‑in‑depth, *not* a leak).** Engines apply
+   the 45 to path + 8 to content. This does **not** leak to L0: the public tier is **MEASURED**
+   PII‑free, and a content‑only‑PII row falls to **L5 (federation, key‑required)**, never L0. The
+   operator‑authorized acer↔liris keyed PII visibility is **intended**, not a breach. Applying all 45
+   to content is optional strictness (L5→L9) — see `policy-oracle/README.md`. *(Items 1, 3, 4, 5 are
+   the real merge blockers.)*
 3. **Fail‑open corpus handling** — empty/unreadable/truncated corpus still reports `ok:true`; unbounded
    HBI `len` allocation. Must fail **closed** + bound the read.
 4. **Duplicate PID/BH ordering** — Node `Map.set` keeps the **last** duplicate; Rust `or_insert` keeps

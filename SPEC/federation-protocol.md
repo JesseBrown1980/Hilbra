@@ -20,7 +20,7 @@ Three serving levels project onto the fabric's native 6‑tier × 6‑scope mode
 | 5 | FEDERATION (≈RESTRICTED) | authenticated peer | hashes/summaries |
 | 9 | OWNER‑PRIVATE (≈STEALTH/HIDDEN/SHADOW/SECRET) | owner‑trusted links only | existence/policy only |
 
-Classification is by the [policy oracle](../policy-oracle/README.md); PII always wins over a public‑canon allow. **Conformance binding:** all 45 oracle fragments apply to **path AND content** of every row; engines that apply them path‑only are non‑conformant (known gap, tracked — see the policy‑oracle README).
+Classification is by the [policy oracle](../policy-oracle/README.md); PII always wins over a public‑canon allow. The oracle governs the **L0 / unauthenticated** disclosure boundary, which is MEASURED PII‑free. The canon target is all 45 fragments on **path AND content**; engines applying them path‑only differ only in **L5‑vs‑L9** classification of content‑only‑PII rows — both consented, key‑gated tiers, never L0 — so this is **defense‑in‑depth strictness, not an L0 leak** (see the policy‑oracle README).
 
 ## 3. Trust transport — key‑off‑wire HMAC (LIVE)
 

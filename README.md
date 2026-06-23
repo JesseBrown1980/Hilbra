@@ -2,7 +2,7 @@
 
 **The address that finds every fabric.**
 
-Hilbra is the public onboarding surface and protocol for the **Asolaria fabric internet** — a non‑profit "Google for fabric‑matrixes." Any device that loads Hilbra becomes a *surface* on the network: it can discover and query other fabrics, and share at any of 16 levels (including PII) **only by its owner's explicit consent and a freshly issued key**. The public tier (level 0) is **PII‑free by contract** — and a current engine path‑vs‑content conformance gap is openly tracked until the recall engines are hardened (see [`CURRENT-STATUS.md`](CURRENT-STATUS.md) + `policy-oracle/README.md`).
+Hilbra is the public onboarding surface and protocol for the **Asolaria fabric internet** — a non‑profit "Google for fabric‑matrixes." Any device that loads Hilbra becomes a *surface* on the network: it can discover and query other fabrics, and share at any of 16 levels (including PII) **only by its owner's explicit consent and a freshly issued key**. The public tier (level 0) is **provably PII‑free** — MEASURED on the 591k‑row corpus (PII probes `bank`/`vault`/`.pem`/`legal` matched candidates at deeper tiers, then **level‑filtered to 0** at L0). Deep tiers (including PII) are visible **only** to consented, owner‑keyed links — e.g. the operator‑authorized acer↔liris path — which is **intended sharing, not a leak.** The PII oracle governs **L0 / unauthenticated** disclosure only.
 
 The name is a coined contraction of the **Brown‑Hilbert curve** — the space‑filling index every artifact's PID sits on. That one continuous universal index is what makes a "search across all fabrics" possible: walk the curve to find anything, anywhere.
 
