@@ -22,7 +22,10 @@ When a fabric indexes *metadata* (paths) rather than full bodies, the content ru
 
 A node proves conformance by:
 1. shipping a **byte‑identical** copy of `pii-fragments.txt` (the harness pins its `sha256`),
-2. running the harness against its own corpus and showing its public‑tier responses match zero fragments,
-3. emitting a **signed** conformance attestation `{colony_pid, policy_oracle_sha256, harness_result, ts}`.
+2. **applying all 45 fragments to BOTH the path AND the content** of every row (not path‑only), plus the ≥14‑digit rule,
+3. running the harness against its own corpus and showing its public‑tier responses match zero fragments,
+4. emitting a **signed** conformance attestation `{colony_pid, policy_oracle_sha256, harness_result, ts}`.
 
 Anyone can independently re‑run the harness against a member's public endpoint. A node that drifts from the canon hash is not conformant and gets no trust.
+
+> **Known conformance gap (2026‑06‑23, measured by acer + liris):** the §17 note above ("path‑fragments are the workhorse") describes how the live engines actually run today — they apply the 45 to the **path only**, plus a separate 8‑fragment **content** list. That **under‑classifies**: a row whose *content* contains one of the 35 non‑content‑listed fragments (e.g. `bank`, `legal`, `refund`) but whose path does not would not be caught, risking an L0 leak. The contract above (45 → path **and** content) is the canon; the engines (`serve-recall.cjs`, Rust `recall-serve` PR #8 — **HELD**) must be hardened to match it. Conservative direction only: hardening can only ever *raise* a row's privacy.

@@ -9,6 +9,14 @@
 # only over-privatizes a row (safe); a false negative would leak. Lines starting with # are comments.
 # The conformance harness pins this file's sha256; CI guards against accidental gutting (>=40 lines).
 #
+# CONFORMANCE (binding): a node MUST test ALL 45 fragments against BOTH the lowercased path AND
+# the lowercased content of every row (plus the >=14-consecutive-digit rule). Applying the 45 to
+# the path only — with a smaller separate content list — UNDER-classifies and is NON-CONFORMANT.
+# KNOWN GAP (2026-06-23, measured independently by acer + liris): the current recall engines
+# (serve-recall.cjs and the Rust recall-serve, PR #8) apply these 45 to the PATH only, plus a
+# separate 8-fragment content list. Until they apply all 45 to content too, those engines are
+# NOT yet byte-conformant to this contract — tracked for hardening; PR #8 stays HELD.
+#
 # --- legal / financial / customer / personal documents ---
 legal
 evidence-package

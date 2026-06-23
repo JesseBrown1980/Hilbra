@@ -15,7 +15,7 @@ Hilbra is a **non‑profit public good**, run with the discipline of a large sof
 
 ## Contribution + safety gates
 
-- All changes go through PRs; the CI **secret‑scanner is a hard merge gate** (`.github/workflows/ci.yml`) — see [`SECRETS.md`](SECRETS.md).
+- All changes go through PRs; a **secret‑scanner** (gitleaks) is the intended hard merge gate — the runnable workflow ships as [`ci/secret-scan.yml`](ci/secret-scan.yml), pending operator install at `.github/workflows/` + branch‑protection (see [`SECRETS.md`](SECRETS.md)).
 - The public PII policy oracle (`policy-oracle/pii-fragments.txt`) cannot silently drift — CI guards it, and conformance pins its sha256.
 - Sensitive/structural changes require multiple cosigners (CODEOWNERS, to be added: the operator pair + designated maintainers).
 

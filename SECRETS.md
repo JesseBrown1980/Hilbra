@@ -17,7 +17,7 @@ This repo is the equivalent of an OS install image: it does **not** contain your
 
 A single leaked HMAC key would let an attacker impersonate a colony. That is the #1 catastrophic failure mode, so the design forbids it absolutely:
 
-- The CI **secret‑scanner is a hard merge gate** (see `.github/workflows/ci.yml` + `.gitleaks.toml`). Any commit containing a key, token, private‑key file, or key‑bearing filename is **blocked**.
+- A **secret‑scanner** (gitleaks, config [`.gitleaks.toml`](.gitleaks.toml)) is the intended hard merge gate. The runnable workflow ships in this repo as [`ci/secret-scan.yml`](ci/secret-scan.yml); **installing it at `.github/workflows/` and marking it a required check is an operator step** (it needs a token with `workflow` scope) — tracked in the roadmap. Once active, any commit containing a key, token, private‑key file, or key‑bearing filename is **blocked**. *(Honest status as of 2026‑06‑23: the config is present; the workflow is provided but not yet installed as an enforced check.)*
 - Identity is **decoupled from capability**: a name is cheap; trust is expensive (a named consenting human owner + a conformance attestation + a rising peer‑vouch threshold + rate‑limited public probation).
 
 If you think you need to put a secret in this repo, you don't. Mint it locally, or move it out‑of‑band.
