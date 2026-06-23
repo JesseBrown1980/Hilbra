@@ -37,25 +37,26 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 | "bidirectional cross‑fabric search, live both directions, right now" | `UNVERIFIED_CURRENT` | liris‑seat read of acer sister‑organ is `_fallback`/stale; acer search has timeout history |
 | Two‑colony nucleus *exists* (was demonstrated HTTP‑200 both ways) | demonstrated by prior receipts; not continuously proven now | `UNVERIFIED_CURRENT` |
 
-## Open blockers (do not merge / no cutover until cleared)
+## Open items — recall-serve PR #8 cutover (no `:4791` Node→Rust cutover until cleared)
 
-PR #8 `recall-serve` (Rust), HELD under bilateral review — term‑count/latency parity is **tokenizer**
-evidence only, **not** authorization or disclosure parity:
+These gate the **Rust recall cutover** (repointing `:4791`), **not** this Hilbra docs PR. Term‑count/
+latency parity is **tokenizer** evidence only, **not** authorization or disclosure parity. All are
+*robustness/parity* hardening — **none is a PII leak** (L0 is measured PII‑free):
 
 1. **Authorization over‑grant** — `verify_remote` returns owner‑private (L9) for every allow‑listed
    owner instead of the per‑owner grant; `/api/search?level=` is ignored. Must be `min(requested, grant)`.
-2. **PII path‑vs‑content — RESOLVED as non‑blocking (defense‑in‑depth, *not* a leak).** Engines apply
-   the 45 to path + 8 to content. This does **not** leak to L0: the public tier is **MEASURED**
-   PII‑free, and a content‑only‑PII row falls to **L5 (federation, key‑required)**, never L0. The
-   operator‑authorized acer↔liris keyed PII visibility is **intended**, not a breach. Applying all 45
-   to content is optional strictness (L5→L9) — see `policy-oracle/README.md`. *(Items 1, 3, 4, 5 are
-   the real merge blockers.)*
-3. **Fail‑open corpus handling** — empty/unreadable/truncated corpus still reports `ok:true`; unbounded
+2. **Fail‑open corpus handling** — empty/unreadable/truncated corpus still reports `ok:true`; unbounded
    HBI `len` allocation. Must fail **closed** + bound the read.
-4. **Duplicate PID/BH ordering** — Node `Map.set` keeps the **last** duplicate; Rust `or_insert` keeps
+3. **Duplicate PID/BH ordering** — Node `Map.set` keeps the **last** duplicate; Rust `or_insert` keeps
    the **first** → divergent results.
-5. **No corrupt/skipped counters; unbounded `thread::spawn`** per connection — add counters + bounded
+4. **No corrupt/skipped counters; unbounded `thread::spawn`** per connection — add counters + bounded
    concurrency.
+
+**Resolved / non‑blocking — PII path‑vs‑content (defense‑in‑depth, *not* a leak):** engines apply the 45
+to path + 8 to content. This does **not** leak to L0 — the public tier is **MEASURED** PII‑free, and a
+content‑only‑PII row falls to **L5 (federation, key‑required)**, never L0. The operator‑authorized
+acer↔liris keyed PII visibility is **intended**, not a breach. Applying all 45 to content is optional
+strictness (L5→L9) — see `policy-oracle/README.md`.
 
 ## Repo / CI honesty
 
