@@ -28,7 +28,7 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 | Node `serve-recall.cjs` linear (O(N) scan) | event‑loop‑stalls on the 591k **acer** corpus — the "no Node" proof | MEASURED_ACER (591k acer corpus); liris confirmed the same linear‑stall class on its own corpus → MEASURED_LIRIS |
 | Node `serve-recall.cjs` indexed, ~60 ms | the ~60 ms figure | OPERATOR_OBSERVED_ACER (prior receipt) — current acer `:4791` state not re‑confirmed this snapshot |
 | Liris local recall `:4791` | live + indexed (health 200) | MEASURED_LIRIS |
-| Rust `recall-serve` (PR #8) | terms/latency parity (2–16 ms) but **HELD** — see blockers | terms/latency MEASURED_ACER; CI green MEASURED_GITHUB; parity/disclosure `UNVERIFIED` |
+| Rust `recall-serve` (PR #8, `a8e837f`) | **MEASURED:** terms **2,614,638** (exact match to the Node receipt), 591,286 rows, build ~45 s, query **2–16 ms** (beats the ~56–67 ms bar), L0 probes `bank`/`vault`/`.pem`/`legal`/`password` → **0** (PII-free), thread-per-conn (no stall). Still **HELD** for robustness/parity hardening (fail-closed corpus, bounded alloc/concurrency, dup PID/BH ordering, honor requested level) — **not** a PII issue | perf + L0-PII-free MEASURED_ACER; CI green MEASURED_GITHUB; robustness/parity `UNVERIFIED` |
 
 ## Current cross-colony liveness
 
