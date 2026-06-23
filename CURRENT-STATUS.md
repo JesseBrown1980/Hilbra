@@ -16,19 +16,19 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 | Item | Status | Vantage |
 |---|---|---|
 | Addressing `PID = sha256(name)[:16]` on Brown‑Hilbert | real | CANON |
-| HMAC key‑off‑wire auth (`LINK\|owner\|host\|verb\|nonce\|ts_be64`) | real | MEASURED_ACER (recall-serve) |
-| Owner‑PID consent + per‑owner grant `min(requested, grant)` | spec correct; **engine parity in progress** | MEASURED (spec) |
-| 45‑fragment policy oracle, byte‑identical both colonies (sha256 match) | real | MEASURED_ACER + MEASURED_LIRIS |
-| Inverted index `HILBRA-IDX-BEHCS-TUPLE-TEXT-V1` (~60 ms Node, 2.6M terms) | live, single‑colony | OPERATOR_OBSERVED_ACER |
+| HMAC key‑off‑wire auth (`LINK\|owner\|host\|verb\|nonce\|ts_be64`) | code path real | MEASURED_ACER (loopback only); remote cross‑colony interop `UNVERIFIED_CURRENT` |
+| Owner‑PID consent + per‑owner grant `min(requested, grant)` | spec correct; **engine parity in progress** | CANON (spec); engine `UNVERIFIED` (PR #8 over‑grants) |
+| 45‑fragment policy oracle byte‑identical across colonies | claimed; **this PR does NOT change the file** (hash preserved) | CANON; liris‑seat sha `MEASURED_LIRIS`; acer‑seat sha‑compare `UNVERIFIED_CURRENT` (receipt pending) |
+| Inverted index `HILBRA-IDX-BEHCS-TUPLE-TEXT-V1` (~60 ms Node, 2.6M terms) | single‑colony | OPERATOR_OBSERVED_ACER (prior receipt) |
 
 ## Recall engines
 
 | Engine | Status | Vantage |
 |---|---|---|
 | Node `serve-recall.cjs` linear (O(N) scan) | event‑loop‑stalls on 591k corpus — the "no Node" proof | MEASURED_ACER + MEASURED_LIRIS |
-| Node `serve-recall.cjs` indexed | live on `:4791`, ~60 ms | OPERATOR_OBSERVED_ACER |
-| Liris local recall `:4791` | live + indexed | MEASURED_LIRIS |
-| Rust `recall-serve` (PR #8) | terms/latency parity (2–16 ms) but **HELD** — see blockers | MEASURED_ACER + MEASURED_GITHUB (CI green) |
+| Node `serve-recall.cjs` indexed, ~60 ms | the ~60 ms figure | OPERATOR_OBSERVED_ACER (prior receipt) — current acer `:4791` state not re‑confirmed this snapshot |
+| Liris local recall `:4791` | live + indexed (health 200) | MEASURED_LIRIS |
+| Rust `recall-serve` (PR #8) | terms/latency parity (2–16 ms) but **HELD** — see blockers | terms/latency MEASURED_ACER; CI green MEASURED_GITHUB; parity/disclosure `UNVERIFIED` |
 
 ## Current cross-colony liveness
 
