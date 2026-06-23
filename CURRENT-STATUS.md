@@ -25,7 +25,7 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 
 | Engine | Status | Vantage |
 |---|---|---|
-| Node `serve-recall.cjs` linear (O(N) scan) | event‑loop‑stalls on 591k corpus — the "no Node" proof | MEASURED_ACER + MEASURED_LIRIS |
+| Node `serve-recall.cjs` linear (O(N) scan) | event‑loop‑stalls on the 591k **acer** corpus — the "no Node" proof | MEASURED_ACER (591k acer corpus); liris confirmed the same linear‑stall class on its own corpus → MEASURED_LIRIS |
 | Node `serve-recall.cjs` indexed, ~60 ms | the ~60 ms figure | OPERATOR_OBSERVED_ACER (prior receipt) — current acer `:4791` state not re‑confirmed this snapshot |
 | Liris local recall `:4791` | live + indexed (health 200) | MEASURED_LIRIS |
 | Rust `recall-serve` (PR #8) | terms/latency parity (2–16 ms) but **HELD** — see blockers | terms/latency MEASURED_ACER; CI green MEASURED_GITHUB; parity/disclosure `UNVERIFIED` |
@@ -35,7 +35,7 @@ _Snapshot date: 2026-06-23 (bilateral acer + liris review)._
 | Claim | Status | Vantage |
 |---|---|---|
 | "bidirectional cross‑fabric search, live both directions, right now" | `UNVERIFIED_CURRENT` | liris‑seat read of acer sister‑organ is `_fallback`/stale; acer search has timeout history |
-| Two‑colony nucleus *exists* (was demonstrated HTTP‑200 both ways) | true | MEASURED (prior receipts) |
+| Two‑colony nucleus *exists* (was demonstrated HTTP‑200 both ways) | demonstrated by prior receipts; not continuously proven now | `UNVERIFIED_CURRENT` |
 
 ## Open blockers (do not merge / no cutover until cleared)
 
@@ -61,3 +61,16 @@ evidence only, **not** authorization or disclosure parity:
 | Secret‑scanner as an **enforced** merge gate | **not yet wired** — `.gitleaks.toml` present, workflow provided at `ci/secret-scan.yml`, operator must install at `.github/workflows/` (needs `workflow` scope) | MEASURED_GITHUB |
 | `host8-serve` (read‑only) running | live locally | OPERATOR_OBSERVED_ACER |
 | BEHCS‑1024 kernel boot on metal | not built (G1) | — |
+
+## TO VERIFY (scale — NOT promoted)
+
+Scale/telemetry claims are a real Asolaria subsystem but carry **no Hilbra receipt yet**, so they
+get **no `MEASURED` tag and do not appear in any live table above**. Before any 1K/1M/1B swarm claim
+is promoted into Hilbra status, it must be cross-checked against the named owning surfaces:
+
+| Claim to verify | Required receipt | Status |
+|---|---|---|
+| Omnimets aggregation across the micro-agent swarm | Omnimets aggregation rows | `TO_VERIFY` |
+| Scale-test fanout ladder 1K → 1M → 1B | scale-test runner receipts (a *ladder*, not live capacity) | `TO_VERIFY` |
+| 4-worker Opencode scaffold (big-pickle / gpt5-nano / minimax-m2.5 / nemotron-3-super) | Opencode 4-worker scaffold logs (a load-test *harness*, not full-swarm runtime) | `TO_VERIFY` |
+| Bilateral cosign cross-colony sync | bilateral cosign audit rows | `TO_VERIFY` |
