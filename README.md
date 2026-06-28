@@ -1,3 +1,5 @@
+> ⚠ **P4B frame:** the **fabric-internet / atlas-recall / PTP-reflection bridge** across vantages (acer/liris/falcon) — how distributed seeing composes when no single vantage sees it all. See [`HILBRA-ROOT-FRAME.md`](./HILBRA-ROOT-FRAME.md) + the system `MAP.md`.
+
 # Hilbra
 
 **The address that finds every fabric.**
