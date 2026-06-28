@@ -1,3 +1,5 @@
+> 🔄 **CURRENT-STATUS correction (2026-06-28, acer-authored · pending cross-seat verify):** the Rust **recall engine is now LIVE and sole** — `:4796` serving **591,946 rows** (verified live this session; L9-searchable, L0 PII-free), `:4791` retired. The older *"Rust recall **held** under review / Node stays live / no cutover"* line below is **superseded for recall** (PR #8/#9/#10 merged). The **`:4790` Hilbra map/display surface is the stale one**, awaiting the runtime-upgrade refresh. The BEHCS-1024 **kernel boot on metal remains future (G1)** — only the recall-engine swap is done, **not** a kernel cutover. Caught by GPT-Pro 3rd-vantage review; grounded in a live `:4796` probe.
+
 > ⚠ **P4B frame:** the **fabric-internet / atlas-recall / PTP-reflection bridge** across vantages (acer/liris/falcon) — how distributed seeing composes when no single vantage sees it all. See [`HILBRA-ROOT-FRAME.md`](./HILBRA-ROOT-FRAME.md) + the system `MAP.md`.
 
 # Hilbra
