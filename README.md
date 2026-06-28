@@ -1,4 +1,8 @@
-> 🔄 **CURRENT-STATUS correction (2026-06-28, acer-authored · pending cross-seat verify):** the Rust **recall engine is now LIVE and sole** — `:4796` serving **591,946 rows** (verified live this session; L9-searchable, L0 PII-free), `:4791` retired. The older *"Rust recall **held** under review / Node stays live / no cutover"* line below is **superseded for recall** (PR #8/#9/#10 merged). The **`:4790` Hilbra map/display surface is the stale one**, awaiting the runtime-upgrade refresh. The BEHCS-1024 **kernel boot on metal remains future (G1)** — only the recall-engine swap is done, **not** a kernel cutover. Caught by GPT-Pro 3rd-vantage review; grounded in a live `:4796` probe.
+> 🔄 **CURRENT-STATUS (2026-06-28, PER-VANTAGE — recall/atlas state is per-seat, NOT global; ports differ per vantage):**
+> - **acer-local (acer-measured this session):** Rust recall `:4796` live = **591,946 rows** (recall-serve rust, colony=acer); on the acer seat `:4791` is superseded by `:4796`, and acer `:4790` is a baked-static map (stale).
+> - **liris-local (liris-measured; acer cannot reach these — vantage boundary):** `:4791` Recall+Atlas live = **10,644 rows**; `:4790` Multi-Cylinder Prime Atlas live; `:4944` super-OS mirror.
+> - **No global "sole/live" claim** — each vantage runs its own recall/atlas; cross-vantage row counts stay SEPARATE until copied/cross-verified. (My first correction over-globalized acer's `:4796` — fixed here; caught by liris + GPT-Pro + GPT-5-Pro.)
+> - BEHCS-1024 **kernel boot on metal still future (G1)**; no kernel cutover. See `HILBRA-ROOT-FRAME.md` + the dashboard/room state map.
 
 > ⚠ **P4B frame:** the **fabric-internet / atlas-recall / PTP-reflection bridge** across vantages (acer/liris/falcon) — how distributed seeing composes when no single vantage sees it all. See [`HILBRA-ROOT-FRAME.md`](./HILBRA-ROOT-FRAME.md) + the system `MAP.md`.
 
