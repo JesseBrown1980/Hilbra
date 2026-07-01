@@ -74,4 +74,35 @@ from the result side. The **back end** (`Asolaria-the-after-100-billion-run-…`
 data, decomposes + mints the cubes, and — operator-gated — promotes the geniuses into supervisors/PIDs.
 All gated / E=0 / describe-only — no fire, no cutover without operator authority.
 
+## Prism/Comb 0-loss (2026-07-01) — satellite entry: the Hilbra atlas as the groupoid's morphism table
+
+Hilbra is the atlas — and in the prism/comb frame the atlas is exactly the **morphism table of the
+level groupoid**: the index of translators `T_ij` between levels/alphabets `L_i`. Because every
+translator is a bijection, entropy is invariant (`H(f(X)) = H(X)`): the atlas **re-relates
+information with 0 loss and never claims compression below entropy** (Shannon's `E[bits] ≥ H(X)`
+stands). Forward = **comb** (collision-avoidance: distinct curve addresses, isolated lanes);
+backward = **prism** (recomposition: many representations resolve to one `N`).
+
+- **MEASURED — the one proven rung, 256 ↔ 1024** (Q-PRISM commit `53023b6`, also `79e8d63`/`de00aca`):
+  bytes are base-2⁸ digits and glyphs base-2¹⁰ digits of the SAME integer; exact packing at
+  `lcm(8,10) = 40` bits ⇒ 5 bytes ⇄ 4 symbols, remainder 0; round-trip
+  `T₁₀₂₄→₂₅₆ ∘ T₂₅₆→₁₀₂₄ = id` sha256-identical, Rust == Python symbol-identical. Code rate exactly 1.0.
+- **CANON frame — the 43+ ladder as a groupoid:** `T_ji ∘ T_ij = id` and `T_jk ∘ T_ij = T_ik` ⇒
+  translation is omnidirectional and **path-independent** — which is precisely why "walk the curve to
+  find anything, anywhere" can return ONE answer regardless of the route the query took through the
+  atlas. **UNVERIFIED:** every rung beyond 256↔1024 earns MEASURED only by its own round-trip proof.
+- **Addressing, not compression (repo-canon boundary):** Hilbra's own `PID = sha256(name)[:16]` on the
+  Brown-Hilbert curve is a **coordinate against a content-addressed store** (`H(content|store) = 0`) —
+  infinite ADDRESSING capacity, never "lossless infinite compression." The atlas holds this bound.
+- **Mirrors vs. authority:** baked `:4790` atlas maps are **mirrors**; the fabric is authority. A stale
+  mirror cannot silently corrupt the groupoid because verification = recomputation — apply the inverse
+  translator and compare (the same per-node invariant that makes confabulation depth-independent to
+  catch). This is the prism/comb form of the PER-VANTAGE rule in `CURRENT-STATUS.md`: each seat's
+  recall rows stay separate until cross-verified; a mirror read is never upgraded to a live claim.
+- **E=0:** this entry describes the translator index; nothing fires, no runtime mutation, no cutover.
+
+Cross-links: Q-PRISM (round-trip proofs) · `Asolaria-waves-and-cascades-…` (the comb/prism duality)
+· `what-is-asolaria-…` (the reductions boundary) · `N-Nest-Prime-…` (the integrity dual) ·
+Metatagging repo (Brown & Fedotov digital-physics grounding, `pixels_first`).
+
 Base: **https://github.com/JesseBrown1980/** · per-link spine nav lives in each repo's `CHAIN.md`.
